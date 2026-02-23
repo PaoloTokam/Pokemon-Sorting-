@@ -1,0 +1,95 @@
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+
+
+//struct store info of a Pokemon 
+struct PokemonNode {
+    char name[15];
+    char ability[15];
+    char type[15];
+    struct PokemonNode *next;
+    struct PokemonNode *prev;
+
+};
+
+//struct store info of Player
+struct PlayerNode {
+    char name[15];
+    int PlayersNumber;
+    int PokemonCount;
+    struct PokemonCount *PlayerPokemon[100];
+    struct PlayerNode *next;
+    struct PlayerNode *prev;
+};
+
+//struct to store in the Pokedex
+struct Pokedex {
+    struct PokemonNode *headPokemon;
+    struct PlayerNode *headPlayer;
+};
+
+//Make a Pokedex
+struct Pokedex pokedex;
+
+// inorder to make a new Pokemon node we need to apply a Function
+struct PokemonNode *createPokemonNode(char name[], char ability[], char type[]){
+struct PokemonNode * NWNode = (struct PokemonNode *)malloc(sizeof (struct PokemonNode));
+strcpy(NWNode->name, name);
+strcpy(NWNode->ability, ability);
+NWNode->next = NULL;
+NWNode->prev = NULL;
+return NWNode;
+}
+
+// Inorder to add new pokemon into list  we need to apply a Function
+
+void addPokemonToList(struct PokemonNode *NWnode){
+    if (pokedex.headPokemon == NULL){
+        pokedex.headPokemon = NWnode;
+    } else {
+        struct PokemonNode *current = pokedex.headPokemon;
+        while (current->next != NULL) {
+
+        }
+        current-> next = NWnode;
+        NWnode->prev = current;
+    }
+}
+// Inorder to search for a pokemon using name we need to apply a Function
+struct PokemonNode *searchPokemonByName(char name[]){
+    struct PokemonNode *current = pokedex.headPokemon;
+    while (current != NULL){
+        if (strcmp(current->name, name)) == 0) {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+// Inorder to create a new Player node  we need to apply a Function
+struct PlayerNode *createPokemonNode(char name[]) {
+    struct PlayerNode *NWnode = (struct PlayerNode *)malloc(sizeof(struct PlayerNode));
+    strcpy(NWnode->name, name);
+    NWnode->PokemonCount = 0;
+    NWnode->next = NULL;
+    NWnode->prev = NULL;
+    return NWnode;
+}
+
+//Inorder to add a new Player to the List  we need to apply a Function
+void addPlayerToList(struct PlayerNode *NWnode){
+    if (pokedex.headPlayer == NULL) {
+        pokedex.headPlayer == NWnode;
+    } else {
+        struct PlayerNode *current = pokedex.headPlayer;
+        while (current-> next != NULL ) {
+            current = current-> next;
+        }
+        current->next = NWnode;
+        NWnode->prev = current;
+
+    }
+}
+
